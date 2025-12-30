@@ -9,7 +9,7 @@ terraform {
     bucket         = "{{ bucket }}"
     key            = "{{ key }}"
     dynamodb_table = "{{ dynamodb_table }}"
-    encrypt        = "true"
+    encrypt        = true
     kms_key_id     = "{{ kms_key_id }}"
   }
 }
