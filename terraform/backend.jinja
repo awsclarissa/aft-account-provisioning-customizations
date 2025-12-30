@@ -1,28 +1,11 @@
-## Auto generated backend.tf ##
+## Auto generated providers.tf ##
 ## Updated on: {{ timestamp }} ##
 
-{% if tf_distribution_type == "oss" -%}
-terraform {
-  required_version = ">= 0.15.0"
-  backend "s3" {
-    region         = "{{ region }}"
-    bucket         = "{{ bucket }}"
-    key            = "{{ key }}"
-    dynamodb_table = "{{ dynamodb_table }}"
-    encrypt        = true
-    kms_key_id     = "{{ kms_key_id }}"
-    skip_credentials_validation = true
-    skip_requesting_account_id  = true
-    skip_metadata_api_check     = true
+provider "aws" {
+  region = "{{ provider_region }}"
+  default_tags {
+    tags = {
+      managed_by = "AFT"
+    }
   }
 }
-{% else -%}
-terraform {
-    backend "remote" {
-        organization = "{{ terraform_org_name }}"
-        workspaces {
-        name = "{{ terraform_workspace_name }}"
-        }
-    }
-}
-{% endif %}
